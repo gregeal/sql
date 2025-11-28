@@ -304,7 +304,7 @@ ADD current_quantity INT;
 -- Step 2: Update with last quantity per product
 UPDATE product_units
 SET current_quantity = (
-    SELECT COALESCE(SUM(vi.quantity), 0)
+    SELECT COALESCE(vi.quantity, 0)
     FROM vendor_inventory vi
     WHERE vi.product_id = product_units.product_id
       AND vi.market_date = (
